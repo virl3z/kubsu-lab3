@@ -1,22 +1,31 @@
 <form action="" method="POST">
     <div class="form-group">
         <label>ФИО:</label>
-        <input type="text" name="full_name" required maxlength="150">
+        <input type="text" name="full_name" required maxlength="150" 
+               pattern="[A-Za-zА-Яа-яЁё\s]+" 
+               title="Только буквы и пробелы"
+               value="<?php echo htmlspecialchars($_POST['full_name'] ?? ''); ?>">
     </div>
 
     <div class="form-group">
         <label>Телефон:</label>
-        <input type="tel" name="phone" required>
+        <input type="tel" name="phone" required 
+               pattern="[\d\s\+\(\)-]+" 
+               title="Только цифры, пробелы, +, (, ), -"
+               value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
     </div>
 
     <div class="form-group">
         <label>E-mail:</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" required 
+               title="Введите email с символом @"
+               value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
     </div>
 
     <div class="form-group">
         <label>Дата рождения:</label>
-        <input type="date" name="birth_date" required>
+        <input type="date" name="birth_date" required 
+               value="<?php echo htmlspecialchars($_POST['birth_date'] ?? ''); ?>">
     </div>
 
     <div class="form-group">
@@ -46,7 +55,7 @@
 
     <div class="form-group">
         <label>Биография:</label>
-        <textarea name="biography" rows="5"></textarea>
+        <textarea name="biography" rows="5"><?php echo htmlspecialchars($_POST['biography'] ?? ''); ?></textarea>
     </div>
 
     <div class="form-group">
