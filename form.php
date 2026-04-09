@@ -235,7 +235,7 @@ $old_data = $_SESSION['old_data'] ?? [];
             <?php unset($_SESSION['errors']); ?>
         <?php endif; ?>
 
-        <form method="POST">
+        <form method="POST" novalidate>
             <div class="form-group">
                 <label class="required">ФИО</label>
                 <input type="text" name="full_name" required maxlength="150" 
