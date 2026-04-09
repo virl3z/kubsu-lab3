@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Сохранение в БД
     $user = 'u82669';
-    $pass = '8095380'; // ЗАМЕНИТЕ НА ВАШ ПАРОЛЬ
+    $pass = '9085380'; 
     try {
         $db = new PDO('mysql:host=localhost;dbname=u82669', $user, $pass,
             [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
