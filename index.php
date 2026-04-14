@@ -1,5 +1,4 @@
 <?php
-session_start();
 header('Content-Type: text/html; charset=UTF-8');
 
 // Обработка POST-запроса
@@ -57,11 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['agreed'] = 'Вы должны ознакомиться с контрактом.';
     }
 
-    // Если есть ошибки — сохраняем в сессию и перезагружаем страницу
+    // Если есть ошибки — выводим их и показываем форму заново
     if (!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        $_SESSION['old_data'] = $_POST;
-        header('Location: ?');
+        include('form.php');
         exit();
     }
 
@@ -96,8 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        unset($_SESSION['old_data']);
-        header('Location: ?save=1');
+        // Успех — показываем форму с сообщением
+        $success = true;
+        include('form.php');
+        exit();
 
     } catch (PDOException $e) {
         die("Ошибка БД: " . $e->getMessage());
@@ -106,5 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // GET-запрос — показываем форму
+$errors = [];
+$success = false;
 include('form.php');
 ?>
